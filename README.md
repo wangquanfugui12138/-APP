@@ -1,4 +1,4 @@
-# mp
+# musicplay APP
 
 >  a test music player basic on Vue2.0  
 
