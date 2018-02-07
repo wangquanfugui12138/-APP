@@ -69,7 +69,7 @@
   .Y-fade-enter-active, .Y-fade-leave-active
     transition: all 0.5s ease-out
   .Y-fade-enter, .Y-fade-leave-to
-    transform:translateY(100%)
+    transform:translateY(10%)
     opacity: 0
   .Y-fade-leave, .Y-fade-enter-to
     opacity: 1

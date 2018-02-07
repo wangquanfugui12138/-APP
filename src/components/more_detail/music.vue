@@ -75,7 +75,7 @@
       </div>
       <div class="content">
         <div class="solo_content">
-          <div class="solo_content_item">
+          <!--<div class="solo_content_item">
             <span class="content_title">那些年听过的周杰伦</span>
           </div>
           <div class="solo_content_item">
@@ -83,7 +83,7 @@
           </div>
           <div class="solo_content_item">
             <span class="content_title">那些年听过的周杰伦</span>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -122,15 +122,29 @@
       },
       getRecommendList(){
         this.$store.state.selectIndex=-1;
-        for(var i=0;i<6;i++){
-          this.$http({
-          method: 'get',
-          url: '/music/api/playlist/detail?id='+this.listId[i]
-        }).then((res)=> {
-          this.$store.state.recommendList.push(res.data.result);
-        }).catch(function (err) {
-          console.log(err)
-        })
+        if (process.env.NODE_ENV != 'production') {
+          for(var i=0;i<6;i++){
+            this.$http({
+            method: 'get',
+            url: '/music/api/playlist/detail?id='+this.listId[i]
+          }).then((res)=> {
+            this.$store.state.recommendList.push(res.data.result);
+          }).catch(function (err) {
+            console.log(err)
+          })
+          }
+        }
+        else{
+          for(var i=0;i<6;i++){
+            this.$http({
+              method: 'get',
+              url: 'http://music.163.com/api/playlist/detail?id='+this.listId[i]
+            }).then((res)=> {
+              this.$store.state.recommendList.push(res.data.result);
+            }).catch(function (err) {
+              console.log(err)
+            })
+          }
         }
       }
     },

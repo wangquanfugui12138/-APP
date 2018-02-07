@@ -24,7 +24,7 @@
       <span class="glyphicon glyphicon-cog"></span>
     </div>
     <transition name="Y-fade">
-      <div v-if="toggle" class="detail_song_list">
+      <div v-if="toggle&&$store.state.mySongList.tracks!=undefined" class="detail_song_list">
         <div class="detail-item" @click="$store.state.playList=true,$store.state.listType=$store.state.mySongList">
           <div class="left">
             <div class="img">
@@ -53,14 +53,26 @@
     },
     methods: {
       geiMyList(){
-        this.$http({
-          method: 'get',
-          url: '/music/api/playlist/detail?id=2039098272'
-        }).then((res)=> {
-          this.$store.state.mySongList = res.data.result;
-        }).catch(function (err) {
-          console.log(err)
-        })
+        if (process.env.NODE_ENV != 'production') {
+          this.$http({
+            method: 'get',
+            url: '/music/api/playlist/detail?id=2039098272'
+          }).then((res)=> {
+            this.$store.state.mySongList = res.data.result;
+          }).catch(function (err) {
+            console.log(err)
+          })
+        }
+        else{
+          this.$http({
+            method: 'get',
+            url: 'http://music.163.com/api/playlist/detail?id=2039098272'
+          }).then((res)=> {
+            this.$store.state.mySongList = res.data.result;
+          }).catch(function (err) {
+            console.log(err)
+          })
+        }
       }
     },
     mounted(){

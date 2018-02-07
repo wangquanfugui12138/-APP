@@ -12,7 +12,6 @@ import store from '../store/store.js'
 Vue.use(Router);
 
 const routes= new Router({
-  mode:'history',
   linkActiveClass: 'active',
   routes: [
     {

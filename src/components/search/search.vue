@@ -53,15 +53,29 @@
     },
     watch: {
       kw(){
-        if (this.kw != ' ' || this.kw != undefined) {
-          this.$http({
-            method: 'get',
-            url: '/s_music/search/get/?limit=100&type=1&s=' + this.kw
-          }).then((res)=> {
-            this.$store.state.sea_result = res.data.result.songs;
-          }).catch(function (err) {
-            console.log(err)
-          })
+        if (process.env.NODE_ENV != 'production') {
+          if (this.kw != ' ' || this.kw != undefined) {
+            this.$http({
+              method: 'get',
+              url: '/s_music/search/get/?limit=100&type=1&s=' + this.kw
+            }).then((res)=> {
+              this.$store.state.sea_result = res.data.result.songs;
+            }).catch(function (err) {
+              console.log(err)
+            })
+          }
+        }
+        else{
+          if (this.kw != ' ' || this.kw != undefined) {
+            this.$http({
+              method: 'get',
+              url: 'http://s.music.163.com/search/get/?limit=100&type=1&s=' + this.kw
+            }).then((res)=> {
+              this.$store.state.sea_result = res.data.result.songs;
+            }).catch(function (err) {
+              console.log(err)
+            })
+          }
         }
       }
     }
