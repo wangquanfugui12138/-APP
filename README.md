@@ -1,6 +1,7 @@
 # musicplay APP
 
->  a test music player basic on Vue2.0  
+>  a test music player basic on Vue2.0  
+`数据通过网易接口获取 开发环境可以直接运行 生产环境需要手动跨域`
 
 ## Build Setup
 
@@ -9,10 +10,10 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run dev(有数据)
 
 # build for production with minification
-npm run build
+npm run build(无数据)
 
 # build for production and view the bundle analyzer report
 npm run build --report
