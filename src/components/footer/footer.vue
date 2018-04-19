@@ -67,7 +67,6 @@
     }
   }
 </script>
-
 <style lang="stylus" type="text/stylus" scoped>
   .footer
     overflow:hidden
